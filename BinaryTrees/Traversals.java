@@ -29,15 +29,26 @@ class PreOrderTree{
     }
 
     // Pre Order Traversal
-    public void preOrderTraversal(Node root){
+    public void preOrder(Node root){
         if(root == null){
             System.out.print(-1 + " ");
             return;
         }
         System.out.print(root.data + " ");
-        preOrderTraversal(root.left);
-        preOrderTraversal(root.right);
+        preOrder(root.left);
+        preOrder(root.right);
     }
+
+    // In-Order Traversal
+    public void inOrder(Node root){
+        if(root == null){
+            return;
+        }
+        inOrder(root.left);
+        System.out.print(root.data + " ");
+        inOrder(root.right);
+    }
+
 }
 
 public class Traversals {
@@ -45,6 +56,9 @@ public class Traversals {
         int vals[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
         PreOrderTree tree = new PreOrderTree();
         Node root = tree.buildPreOrder(vals);
-        tree.preOrderTraversal(root);
+        System.err.println("Pre Order Traversal => ");
+        tree.preOrder(root);
+        System.out.println("In Order Traversal => ");
+        tree.inOrder(root);
     }
 }
