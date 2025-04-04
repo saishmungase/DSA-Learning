@@ -49,6 +49,14 @@ class PreOrderTree{
         inOrder(root.right);
     }
 
+    public void postOrder(Node root){
+        if(root == null){
+            return;
+        }
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.print(root.data + " ");
+    }
 }
 
 public class Traversals {
@@ -60,5 +68,7 @@ public class Traversals {
         tree.preOrder(root);
         System.out.println("In Order Traversal => ");
         tree.inOrder(root);
+        System.out.println("Post Order Traversal => ");
+        tree.postOrder(root);
     }
 }
