@@ -57,6 +57,21 @@ class PreOrderTree{
         postOrder(root.right);
         System.out.print(root.data + " ");
     }
+
+    public void levelOrder(Node root){
+        Queue<Node> q = new ArrayDeque<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            Node removedNode = q.remove();
+            System.out.print(removedNode.data + " ");
+            if(removedNode.left != null){
+                q.add(removedNode.left);
+            }
+            if(removedNode.right != null){
+                q.add(removedNode.right);
+            }
+        }
+    }
 }
 
 public class Traversals {
@@ -70,5 +85,7 @@ public class Traversals {
         tree.inOrder(root);
         System.out.println("Post Order Traversal => ");
         tree.postOrder(root);
+        System.out.println("Level Order Traversal => ");
+        tree.levelOrder(root);
     }
 }
