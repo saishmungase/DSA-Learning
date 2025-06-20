@@ -11,7 +11,6 @@ class Node{
 }
 
 
-
 public class TotalNodesInTree {
 
     public static int totalNodes(Node root){
