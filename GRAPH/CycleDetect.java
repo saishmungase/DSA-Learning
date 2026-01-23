@@ -1,0 +1,75 @@
+import java.util.ArrayList;
+
+public class CycleDetect {
+
+    static class Edge {
+        int src;
+        int dst;
+        Edge(int src, int dst){
+            this.src = src;
+            this.dst = dst;
+        }
+    }
+
+    static boolean detectCycle(ArrayList<Edge> graph[]){
+
+        boolean isVisited[] = new boolean[graph.length];
+        for(int i = 0; i < graph.length; i++){
+            if(!isVisited[i]){
+                if(detectCycleUtils(graph, isVisited, i, -1)){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean detectCycleUtils(ArrayList<Edge> graph[], boolean vis[], int curr, int par){
+
+        vis[curr] = true;
+
+        for(int i = 0; i < graph[curr].size(); i++){
+            Edge child = graph[curr].get(i);
+            if(!vis[child.dst] && detectCycleUtils(graph, vis, child.dst, child.src)){
+                return true;
+            }
+            
+            if(vis[child.dst] && child.dst == par){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    static void createGraph(ArrayList<Edge> graph[]) {
+
+        for (int i = 0; i < graph.length; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        graph[0].add(new Edge(0, 1));
+        graph[0].add(new Edge(0, 2));
+        graph[0].add(new Edge(0, 3));
+
+        graph[1].add(new Edge(1, 0));
+        graph[1].add(new Edge(1, 2));
+
+        graph[2].add(new Edge(2, 0));
+        graph[2].add(new Edge(2, 1));
+
+        graph[3].add(new Edge(3, 0));
+        graph[3].add(new Edge(3, 4));
+
+        graph[4].add(new Edge(4, 3));
+    }
+
+    public static void main(String args[]) {
+        int V = 5; 
+        @SuppressWarnings("unchecked")
+        ArrayList<Edge>[] graph = new ArrayList[V];
+        createGraph(graph);
+        System.out.println(detectCycle(graph));
+    }
+}
