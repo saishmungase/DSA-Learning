@@ -31,11 +31,13 @@ public class CycleDetect {
 
         for(int i = 0; i < graph[curr].size(); i++){
             Edge child = graph[curr].get(i);
-            if(!vis[child.dst] && detectCycleUtils(graph, vis, child.dst, child.src)){
-                return true;
+            if(!vis[child.dst]){
+                if(detectCycleUtils(graph, vis, child.dst, curr)){
+                    return true;
+                }
             }
             
-            if(vis[child.dst] && child.dst == par){
+            else if(child.dst != par){
                 return true;
             }
         }
