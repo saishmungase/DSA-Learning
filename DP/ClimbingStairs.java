@@ -1,5 +1,3 @@
-package DP;
-
 public class ClimbingStairs {
     static int calls = 0;
 

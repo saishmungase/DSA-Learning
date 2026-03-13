@@ -1,5 +1,3 @@
-package DP;
-
 public class Fibona {
 
     static int dp[] = new int[11];
